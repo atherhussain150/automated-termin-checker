@@ -1,4 +1,5 @@
 import time
+import winsound
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -49,6 +50,7 @@ if __name__ == "__main__":
         while True:
             if check_appointments(driver):
                 print("Appointment available in June! Check the website.")
+                winsound.Beep(1000, 500)
                 
             else:
                 print("No appointments found in June. Refreshing...")
