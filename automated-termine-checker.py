@@ -31,4 +31,29 @@ def check_appointments(driver):
         print(f"Error checking appointments: {e}")
     return False
 
+if __name__ == "__main__":
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service)
 
+    url = 'URL'
+
+    refresh_interval = 900
+
+    driver.execute_script("window.open('');")
+    time.sleep(1)
+    driver.switch_to.window(driver.window_handles[1])
+
+    navigate_to_appointment_page(driver)
+
+    try:
+        while True:
+            if check_appointments(driver):
+                print("Appointment available in June! Check the website.")
+                
+            else:
+                print("No appointments found in June. Refreshing...")
+                driver.refresh()
+                time.sleep(refresh_interval)
+    except KeyboardInterrupt:
+        print("Stopping the script.")
+    
